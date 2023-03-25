@@ -17,7 +17,7 @@ export class TenantService {
   getTenantById(id: string): Tenant | null {
     if (id && id !== '') {
       const [tenant] = this.tenants.filter(tenant => tenant.id === id);
-      return tenant;
+      return tenant ? tenant : null;
     } else {
       return null;
     }
