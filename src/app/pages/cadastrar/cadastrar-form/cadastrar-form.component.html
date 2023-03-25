@@ -1,0 +1,174 @@
+{{ cadastrarForm | json }}
+
+<form #form="ngForm" (ngSubmit)="submitForm(form)">
+    <div class="input-row">
+        <label>CNPJ</label>
+        <input id="cnpj" name="cnpj" placeholder="Informe o cnpj da sua empresa"
+            [(ngModel)]="cadastrarForm.cnpj" required #cnpj="ngModel" />
+        <div *ngIf="cnpj.invalid && (cnpj.dirty || cnpj.touched)" class="alert">
+            <div *ngIf="cnpj.errors?.['required']">
+                Campo obrigatório
+            </div>
+        </div>
+    </div>
+
+    <div class="input-row">
+        <label>Nome do responsável</label>
+        <input id="responsavel" name="responsavel"
+            placeholder="Informe o nome do responsavel"
+            [(ngModel)]="cadastrarForm.responsavel" required
+            #responsavel="ngModel" />
+        <div *ngIf="responsavel.invalid && (responsavel.dirty || responsavel.touched)"
+            class="alert">
+            <div *ngIf="responsavel.errors?.['required']">
+                Campo obrigatório
+            </div>
+        </div>
+    </div>
+
+    <div class="input-row">
+        <label>Número de contato</label>
+        <input id="contato" name="contato"
+            placeholder="Informe um número para contato"
+            [(ngModel)]="cadastrarForm.contato" required #contato="ngModel" />
+        <div *ngIf="contato.invalid && (contato.dirty || contato.touched)"
+            class="alert">
+            <div *ngIf="contato.errors?.['required']">
+                Campo obrigatório
+            </div>
+        </div>
+    </div>
+
+    <div class="input-row">
+        <label>Nome do provedor</label>
+        <input id="provedor-nome" name="provedor-nome"
+            placeholder="Informe o nome do provedor"
+            [(ngModel)]="cadastrarForm.provedorNome" required
+            #provedorNome="ngModel" />
+        <div *ngIf="provedorNome.invalid && (provedorNome.dirty || provedorNome.touched)"
+            class="alert">
+            <div *ngIf="provedorNome.errors?.['required']">
+                Campo obrigatório
+            </div>
+        </div>
+    </div>
+
+    <div class="input-row">
+        <label>Nome do banco de dados</label>
+        <input id="database-nome" name="database-nome"
+            placeholder="Informe o nome do banco de dados"
+            [(ngModel)]="cadastrarForm.databaseName" required
+            #databaseNome="ngModel" />
+        <div *ngIf="databaseNome.invalid && (databaseNome.dirty || databaseNome.touched)"
+            class="alert">
+            <div *ngIf="databaseNome.errors?.['required']">
+                Campo obrigatório
+            </div>
+        </div>
+    </div>
+
+    <div class="input-row">
+        <label>Dialeto do banco de dados</label>
+        <input id="database-dialect" name="database-dialect"
+            placeholder="Informe o dialeto do banco de dados"
+            [(ngModel)]="cadastrarForm.databaseDialect" required
+            #databaseDialect="ngModel" />
+        <div *ngIf="databaseDialect.invalid && (databaseDialect.dirty || databaseDialect.touched)"
+            class="alert">
+            <div *ngIf="databaseDialect.errors?.['required']">
+                Campo obrigatório
+            </div>
+        </div>
+    </div>
+
+    <div class="input-row">
+        <label>Host do banco de dados</label>
+        <input id="database-host" name="database-host"
+            placeholder="Informe o host do banco de dados"
+            [(ngModel)]="cadastrarForm.databaseHost" required
+            #databaseHost="ngModel" />
+        <div *ngIf="databaseHost.invalid && (databaseHost.dirty || databaseHost.touched)"
+            class="alert">
+            <div *ngIf="databaseHost.errors?.['required']">
+                Campo obrigatório
+            </div>
+        </div>
+    </div>
+
+    <div class="input-row">
+        <label>Usuário do banco de dados</label>
+        <input id="database-user" name="database-user"
+            placeholder="Informe o usuário do banco de dados"
+            [(ngModel)]="cadastrarForm.databaseUsername" required
+            #databaseUser="ngModel" />
+        <div *ngIf="databaseUser.invalid && (databaseUser.dirty || databaseUser.touched)"
+            class="alert">
+            <div *ngIf="databaseUser.errors?.['required']">
+                Campo obrigatório
+            </div>
+        </div>
+    </div>
+
+    <div class="input-row">
+        <label>Senha do banco de dados</label>
+        <input id="database-pwd" name="database-pwd"
+            placeholder="Informe a senha do banco de dados"
+            [(ngModel)]="cadastrarForm.databasePassword" required
+            #databasePwd="ngModel" />
+        <div *ngIf="databasePwd.invalid && (databasePwd.dirty || databasePwd.touched)"
+            class="alert">
+            <div *ngIf="databasePwd.errors?.['required']">
+                Campo obrigatório
+            </div>
+        </div>
+    </div>
+
+    <div class="input-row">
+        <label>Valor assinatura</label>
+        <input id="assinatura-valor" name="assinatura-valor"
+            placeholder="Informe a senha do banco de dados"
+            [(ngModel)]="cadastrarForm.assinaturaValor" required
+            #assinaturaValor="ngModel" />
+        <div *ngIf="assinaturaValor.invalid && (assinaturaValor.dirty || assinaturaValor.touched)"
+            class="alert">
+            <div *ngIf="assinaturaValor.errors?.['required']">
+                Campo obrigatório
+            </div>
+        </div>
+    </div>
+
+    <div class="input-row">
+        <label>Dia de vencimento</label>
+        <select id="assinatura-dia-vencimento" name="assinatura-dia-vencimento"
+            [(ngModel)]="cadastrarForm.assinaturaDiaVencimento" required
+            #assinaturaDiaVencimento="ngModel">
+            <option value="5">5</option>
+            <option value="8">8</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+        </select>
+        <div *ngIf="assinaturaDiaVencimento.invalid && (assinaturaDiaVencimento.dirty || assinaturaDiaVencimento.touched)"
+            class="alert">
+            <div *ngIf="assinaturaDiaVencimento.errors?.['required']">
+                Campo obrigatório
+            </div>
+        </div>
+    </div>
+
+    <div class="input-row">
+        <label>Data de vencimento</label>
+        <input id="assinatura-data-vencimento" name="assinatura-data-vencimento"
+            type="date" required
+            [(ngModel)]="cadastrarForm.assinaturaDataVencimento" required
+            #assinaturaDataVencimento="ngModel" />
+        <div *ngIf="assinaturaDataVencimento.invalid && (assinaturaDataVencimento.dirty || assinaturaDataVencimento.touched)"
+            class="alert">
+            <div *ngIf="assinaturaDataVencimento.errors?.['required']">
+                Campo obrigatório
+            </div>
+        </div>
+    </div>
+
+    <button type="submit">Enviar</button>
+</form>
