@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { Tenant } from 'src/app/models/Tenant';
-import { parseISO, format } from 'date-fns';
 
 @Component({
   selector: 'app-subscription-card',
