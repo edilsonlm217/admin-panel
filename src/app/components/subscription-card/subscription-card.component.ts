@@ -33,7 +33,7 @@ export class SubscriptionCardComponent {
     }
   }
 
-  wppOnClick(): void {
+  abrirWhatsapp(): void {
     window.open('https://whatsa.me/5592991424261', '_blank');
   }
 
