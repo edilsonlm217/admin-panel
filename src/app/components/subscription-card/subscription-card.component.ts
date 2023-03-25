@@ -16,7 +16,7 @@ export class SubscriptionCardComponent {
     public router: Router,
   ) { }
 
-  async toggleIsActive(): Promise<void> {
+  async ativarDesativarTenant(): Promise<void> {
     try {
       const updatedTenant = await this.api.toggleIsActive(this.tenant.cnpj);
       this.tenant = updatedTenant;
@@ -25,7 +25,7 @@ export class SubscriptionCardComponent {
     }
   }
 
-  async connectOnClick(): Promise<void> {
+  async conectarDatabase(): Promise<void> {
     try {
       this.tenant = await this.api.connectDatabase(this.tenant.cnpj);
     } catch (error) {

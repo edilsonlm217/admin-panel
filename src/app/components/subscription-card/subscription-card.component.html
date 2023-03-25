@@ -17,7 +17,7 @@
     <div class="flex-row">
         <button
             class="card-btn"
-            (click)="toggleIsActive()"
+            (click)="ativarDesativarTenant()"
             [ngClass]="tenant.assinatura.ativa ? 'activated' : 'desactivated'"
         >
             {{ tenant.assinatura.ativa ? 'Desativar' : 'Ativar' }}
@@ -25,7 +25,7 @@
         <button
             class="card-btn"
             type="button"
-            (click)="connectOnClick()"
+            (click)="conectarDatabase()"
             [disabled]="!tenant.assinatura.ativa"
             [ngClass]="!tenant.database.conectado && tenant.assinatura.ativa ? 'enable-btn' : 'disable-btn'"
         >
