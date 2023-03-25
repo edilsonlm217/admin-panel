@@ -7,7 +7,7 @@ import { Tenant } from '../models/Tenant';
   providedIn: 'root'
 })
 export class ApiService {
-  private api: string = 'http://177.53.237.90:3336';
+  public api: string = 'http://177.53.237.90:3336';
 
   constructor(
     public http: HttpClient,
@@ -102,13 +102,13 @@ export class ApiService {
       );
     })
   }
-  
+
   /**
    * Updates a tenant by ID.
    * @param {string} tenantId - The ID of the tenant to update.
    * @param {any} body - The updated tenant data.
    * @returns {Promise<any>} - A promise that resolves with the updated tenant data or rejects with an error.
-   */ 
+   */
   atualizarTenantById(tenantId: string, body: any): Promise<Tenant> {
     return new Promise((resolve, reject) => {
       const url = `${this.api}/provider/${tenantId}`;
