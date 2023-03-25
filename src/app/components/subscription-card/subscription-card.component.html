@@ -1,0 +1,38 @@
+<div class="card">
+    <div class="flex-row">
+        <h1>
+            {{ tenant.provedor.nome }} - <span>{{ tenant.database.conectado ? 'On' : 'Off' }}</span>
+        </h1>
+        <div>
+            <button (click)="handleEditing()">Editar</button> | <button (click)="handleRecebimento()">Receber</button>
+        </div>
+    </div>
+
+    <p class="subtitle">{{ tenant.responsavel }}</p>
+    <div class="flex-row">
+        <p class="subtitle">Vencimento: {{ tenant.assinatura.data_vencimento }}</p>
+        <p class="subtitle bold">{{ tenant.assinatura.valor }}</p>
+    </div>
+
+    <div class="flex-row">
+        <button 
+            class="card-btn" 
+            (click)="toggleIsActive()" 
+            [ngClass]="tenant.assinatura.ativa ? 'activated' : 'desactivated'"
+        >
+            {{ tenant.assinatura.ativa ? 'Desativar' : 'Ativar' }}
+        </button>
+        <button 
+            class="card-btn" 
+            type="button" 
+            (click)="connectOnClick()" 
+            [disabled]="!tenant.assinatura.ativa"
+            [ngClass]="!tenant.database.conectado && tenant.assinatura.ativa ? 'enable-btn' : 'disable-btn'"
+        >
+            Conectar
+        </button>
+        <button class="card-btn" (click)="wppOnClick()">
+            Whatsapp
+        </button>
+    </div>
+</div>
