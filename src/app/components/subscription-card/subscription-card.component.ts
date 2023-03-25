@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { Tenant } from 'src/app/models/Tenant';
@@ -34,7 +34,7 @@ export class SubscriptionCardComponent {
   }
 
   abrirWhatsapp(): void {
-    window.open('https://whatsa.me/5592991424261', '_blank');
+    window.open(`https://whatsa.me/${this.tenant.contato}`, '_blank');
   }
 
   navegarParaRecebimento(): void {
