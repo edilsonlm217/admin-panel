@@ -1,0 +1,23 @@
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    
+    .input-row {
+        display: flex;
+        flex-direction: column;
+        
+        label {
+            font-size: 14px;
+        }
+
+        input, select {
+            padding: 8px;
+        }
+
+        .alert {
+            color: red;
+            font-size: 12px;
+        }
+    }
+}
