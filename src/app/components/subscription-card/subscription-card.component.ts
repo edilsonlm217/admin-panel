@@ -37,7 +37,7 @@ export class SubscriptionCardComponent {
     window.open('https://whatsa.me/5592991424261', '_blank');
   }
 
-  handleRecebimento(): void {
+  navegarParaRecebimento(): void {
     this.router.navigate(['/receber'], {
       queryParams: {
         tenantId: this.tenant.id
@@ -45,7 +45,7 @@ export class SubscriptionCardComponent {
     });
   }
 
-  handleEditing(): void {
+  navegarParaEdicao(): void {
     this.router.navigate(['/editar'], {
       queryParams: {
         tenantId: this.tenant.id
