@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
 import { Tenant } from '../models/Tenant';
 
 @Injectable({
