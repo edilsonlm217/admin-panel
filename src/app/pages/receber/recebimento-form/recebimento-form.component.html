@@ -1,0 +1,31 @@
+{{ recebimentoForm | json }}
+
+<form #form="ngForm">
+    <label>Valor Pago</label>
+    <input 
+        id="valorPago" 
+        name="valorPago" 
+        required
+        [(ngModel)]="recebimentoForm.valorPago"
+    />
+
+    <label>Data de pagamento</label>
+    <input 
+        id="dataPagamento"
+        name="dataPagamento"
+        type="date" 
+        required 
+        [(ngModel)]="recebimentoForm.dataPagamento"
+    />
+
+    <label>Próximo pagamento</label>
+    <input 
+        id="proximoPagamento"
+        name="proximoPagamento"
+        type="date" 
+        required 
+        [(ngModel)]="recebimentoForm.proximoPagamento"
+     />
+
+    <button (click)="handleSubmit()">Receber</button>
+</form>
