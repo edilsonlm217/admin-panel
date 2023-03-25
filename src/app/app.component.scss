@@ -1,0 +1,27 @@
+#app-container {
+    display: grid;
+
+    grid-template-areas:
+        "header"
+        "main"
+        "footer";
+
+    grid-template-rows: 90px 1fr 52px;
+
+    min-height: 100vh;
+
+    #header-container {
+        grid-area: header;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+    }
+
+    main {
+        grid-area: main;
+    }
+
+    footer {
+        grid-area: footer;
+    }
+}
