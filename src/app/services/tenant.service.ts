@@ -8,8 +8,6 @@ import { Tenant } from '../models/Tenant';
 export class TenantService {
   public tenants!: Tenant[];
 
-  public fetchTenantIsDone = new Subject<Tenant[]>;
-
   constructor() { }
 
   setTenants(tenants: Tenant[]) {
