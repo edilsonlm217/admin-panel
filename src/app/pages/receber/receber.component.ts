@@ -26,31 +26,18 @@ export class ReceberComponent implements OnInit {
     this.route.queryParams.subscribe((params: any) => {
       const tenantId = params['tenantId'];
       const tenant = this.tenantService.getTenantById(tenantId);
-      if (tenant) { this.setTenant(tenant) }
+      if (tenant) {
+        this.setTenant(tenant);
+        this.cnpj = this.tenant.cnpj;
+        this.valorPago = this.tenant.assinatura.valor;
+        this.dataPagamento = this.resolveDataPagamento();
+        this.proximoPagamento = '';
+      }
     });
-
-    this.cnpj = this.tenant.cnpj;
-    this.valorPago = this.tenant.assinatura.valor;
-    this.dataPagamento = this.resolveDataPagamento();
-    this.proximoPagamento = '';
-
-    console.log(this.cnpj);
-    console.log(this.valorPago);
-    console.log(this.dataPagamento);
-    console.log(this.proximoPagamento);
   }
 
   setTenant(tenant: Tenant) {
     this.tenant = tenant;
-  }
-
-  getTenantIdFromQueryParams(): Promise<string> {
-    return new Promise<string>((resolve, reject) => {
-      this.route.queryParams.subscribe(
-        (params: any) => { resolve(params.tenantId) },
-        (error) => { reject(error) }
-      );
-    })
   }
 
   resolveProximoPagamento(vencimentoOriginal: string): string {
