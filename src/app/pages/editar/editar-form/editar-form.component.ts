@@ -6,6 +6,7 @@ import { format, parseISO } from 'date-fns';
 import { ApiService } from 'src/app/services/api.service';
 import { TenantService } from 'src/app/services/tenant.service';
 import { EditarForm } from '../editar-model';
+import { FormUtilsService } from 'src/app/services/form-utils.service';
 
 @Component({
   selector: 'app-editar-form',
@@ -22,6 +23,7 @@ export class EditarFormComponent implements OnInit {
     public api: ApiService,
     public tenantService: TenantService,
     public router: Router,
+    public formUtilsService: FormUtilsService,
   ) { }
 
   async ngOnInit(): Promise<void> {
@@ -41,10 +43,10 @@ export class EditarFormComponent implements OnInit {
   }
 
   async submitForm(ngForm: NgForm): Promise<void> {
-    const isFormValid = this.resolveIsFormValid(ngForm);
+    const isFormValid = this.formUtilsService.resolveIsFormValid(ngForm);
 
     if (!isFormValid) {
-      this.focusMissingField(ngForm.form.controls);
+      this.formUtilsService.focusMissingField(ngForm);
       return;
     }
 
@@ -77,38 +79,6 @@ export class EditarFormComponent implements OnInit {
         dia_vencimento: this.editarForm.assinaturaDiaVencimento,
       }
     };
-  }
-
-  resolveIsFormValid(ngForm: NgForm): boolean {
-    return ngForm.form.status === 'VALID';
-  }
-
-  focusMissingField(controls: any): void {
-    try {
-      for (const name in controls) {
-        if (controls[name].invalid) {
-          const element = document.getElementById(name);
-          if (element) { element.focus() }
-        }
-      }
-    } catch (error) {
-      console.error(error);
-    }
-
-    this.blurAllField(controls);
-  }
-
-  blurAllField(controls: any): void {
-    try {
-      for (const name in controls) {
-        if (controls[name]) {
-          const element = document.getElementById(name);
-          if (element) { element.blur() }
-        }
-      }
-    } catch (error) {
-      console.error(error);
-    }
   }
 
   preencherForm(tenant: DetailedTenant): void {
