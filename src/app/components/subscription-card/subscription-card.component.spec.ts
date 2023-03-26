@@ -85,7 +85,7 @@ describe('SubscriptionCardComponent', () => {
     });
 
     it('should log error when api.toggleIsActive throws an error', async () => {
-      const error = new Error('Error');
+      const error = 'SubscriptionCardComponent: Failed to "ativar" ou "desativar" tenant';
       spyOn(apiService, 'toggleIsActive').and.throwError(error);
 
       spyOn(console, 'error');
@@ -130,7 +130,7 @@ describe('SubscriptionCardComponent', () => {
     });
 
     it('should log error when api.connectDatabase throws an error', async () => {
-      const error = new Error('Error');
+      const error = 'SubscriptionCardComponent: Failed to connect to database';
       spyOn(apiService, 'connectDatabase').and.throwError(error);
 
       spyOn(console, 'error');
