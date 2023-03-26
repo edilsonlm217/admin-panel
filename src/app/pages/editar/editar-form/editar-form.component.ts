@@ -34,7 +34,7 @@ export class EditarFormComponent implements OnInit {
       this.setTenant(tenant);
       this.preencherForm(this.tenant);
     } catch (error) {
-      console.error(error);
+      console.error('EditarFormComponent: Failed to fetch tenant');
     }
   }
 
@@ -51,34 +51,29 @@ export class EditarFormComponent implements OnInit {
     }
 
     try {
-      const tenant = this.buildTenantObj();
-      const response = await this.api.atualizarTenantById(this.tenantId, tenant);
+      const response = await this.api.atualizarTenantById(this.tenantId, {
+        cnpj: ngForm.form.value['cnpj'],
+        responsavel: ngForm.form.value['responsavel'],
+        contato: ngForm.form.value['contato'],
+        provedor: { nome: ngForm.form.value['provedor-nome'] },
+        database: {
+          name: ngForm.form.value['database-nome'],
+          dialect: ngForm.form.value['database-dialect'],
+          host: ngForm.form.value['database-host'],
+          username: ngForm.form.value['database-user'],
+          password: ngForm.form.value['database-pwd'],
+        },
+        assinatura: {
+          valor: Number(ngForm.form.value['assinatura-valor']),
+          data_vencimento: ngForm.form.value['assinatura-data-vencimento'],
+          dia_vencimento: ngForm.form.value['assinatura-dia-vencimento'],
+        }
+      });
       this.tenantService.tenants.push(response);
       this.router.navigate(['/']);
     } catch (error) {
-      console.error(error);
+      console.error('EditarFormComponent: Failed to update tenant');
     }
-  }
-
-  buildTenantObj() {
-    return {
-      cnpj: this.editarForm.cnpj,
-      responsavel: this.editarForm.responsavel,
-      contato: this.editarForm.contato,
-      provedor: { nome: this.editarForm.provedorNome },
-      database: {
-        name: this.editarForm.databaseName,
-        dialect: this.editarForm.databaseDialect,
-        host: this.editarForm.databaseHost,
-        username: this.editarForm.databaseUsername,
-        password: this.editarForm.databasePassword,
-      },
-      assinatura: {
-        valor: Number(this.editarForm.assinaturaValor),
-        data_vencimento: this.editarForm.assinaturaDataVencimento,
-        dia_vencimento: this.editarForm.assinaturaDiaVencimento,
-      }
-    };
   }
 
   preencherForm(tenant: DetailedTenant): void {
