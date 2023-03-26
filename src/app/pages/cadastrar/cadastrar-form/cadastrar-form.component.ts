@@ -34,29 +34,28 @@ export class CadastrarFormComponent implements OnInit {
     }
 
     try {
-      const form = this.cadastrarForm;
       const response = await this.api.cadastrarTenant({
-        cnpj: form.cnpj,
-        responsavel: form.responsavel,
-        contato: form.contato,
-        provedor: { nome: form.provedorNome },
+        cnpj: ngForm.form.value['cnpj'],
+        responsavel: ngForm.form.value['responsavel'],
+        contato: ngForm.form.value['contato'],
+        provedor: { nome: ngForm.form.value['provedor-nome'] },
         database: {
-          name: form.databaseName,
-          dialect: form.databaseDialect,
-          host: form.databaseHost,
-          username: form.databaseUsername,
-          password: form.databasePassword,
+          name: ngForm.form.value['database-nome'],
+          dialect: ngForm.form.value['database-dialect'],
+          host: ngForm.form.value['database-host'],
+          username: ngForm.form.value['database-user'],
+          password: ngForm.form.value['database-pwd'],
         },
         assinatura: {
-          valor: Number(form.assinaturaValor),
-          data_vencimento: form.assinaturaDataVencimento,
-          dia_vencimento: form.assinaturaDiaVencimento,
+          valor: Number(ngForm.form.value['assinatura-valor']),
+          data_vencimento: ngForm.form.value['assinatura-data-vencimento'],
+          dia_vencimento: ngForm.form.value['assinatura-dia-vencimento'],
         }
       });
       this.tenantService.tenants.push(response);
       this.router.navigate(['/']);
     } catch (error) {
-      console.error(error);
+      console.error('CadastrarFormComponent: Failed to register new tenant');
     }
   }
 }
