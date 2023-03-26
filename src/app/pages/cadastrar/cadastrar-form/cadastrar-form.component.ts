@@ -26,7 +26,7 @@ export class CadastrarFormComponent implements OnInit {
   }
 
   async submitForm(ngForm: NgForm): Promise<void> {
-    const isFormValid = this.resolveIsFormValid(ngForm);
+    const isFormValid = this.formUtilsService.resolveIsFormValid(ngForm);
 
     if (!isFormValid) {
       this.formUtilsService.focusMissingField(ngForm.form.controls);
@@ -62,22 +62,5 @@ export class CadastrarFormComponent implements OnInit {
         dia_vencimento: this.cadastrarForm.assinaturaDiaVencimento,
       }
     };
-  }
-
-  resolveIsFormValid(ngForm: NgForm): boolean {
-    return ngForm.form.status === 'VALID';
-  }
-
-  blurAllField(controls: any): void {
-    try {
-      for (const name in controls) {
-        if (controls[name]) {
-          const element = document.getElementById(name);
-          if (element) { element.blur() }
-        }
-      }
-    } catch (error) {
-      console.error(error);
-    }
   }
 }
