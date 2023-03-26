@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card" *ngIf="tenant">
     <div class="flex-row">
         <h1>
             {{ tenant.provedor.nome }} - <span>{{ tenant.database.conectado ? 'On' : 'Off' }}</span>
