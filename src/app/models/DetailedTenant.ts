@@ -9,10 +9,10 @@ export interface DetailedTenant {
     database: {
         conectado: boolean
         name: string
-		dialect: string
-		host: string
-		username: string
-		password: string
+        dialect: string
+        host: string
+        username: string
+        password: string
     },
     assinatura: {
         ativa: boolean,
