@@ -21,7 +21,7 @@ export class SubscriptionCardComponent {
       const updatedTenant = await this.api.toggleIsActive(this.tenant.cnpj);
       this.tenant = updatedTenant;
     } catch (error) {
-      console.error(error);
+      console.error('SubscriptionCardComponent: Failed to "ativar" ou "desativar" tenant');
     }
   }
 
@@ -29,7 +29,7 @@ export class SubscriptionCardComponent {
     try {
       this.tenant = await this.api.connectDatabase(this.tenant.cnpj);
     } catch (error) {
-      console.error(error);
+      console.error('SubscriptionCardComponent: Failed to connect to database');
     }
   }
 
