@@ -20,7 +20,7 @@ export class EditarComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe((params: any) => {
       const id = params['tenantId'];
-      if (id) this.setTenantId(id);;
+      if (id) this.setTenantId(id);
     });
   }
 
