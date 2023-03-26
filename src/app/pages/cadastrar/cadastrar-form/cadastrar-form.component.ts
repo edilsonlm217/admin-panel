@@ -29,38 +29,34 @@ export class CadastrarFormComponent implements OnInit {
     const isFormValid = this.formUtilsService.resolveIsFormValid(ngForm);
 
     if (!isFormValid) {
-      this.formUtilsService.focusMissingField(ngForm.form.controls);
+      this.formUtilsService.focusMissingField(ngForm);
       return;
     }
 
     try {
-      const tenant = this.buildTenantObj();
-      const response = await this.api.cadastrarTenant(tenant);
+      const form = this.cadastrarForm;
+      const response = await this.api.cadastrarTenant({
+        cnpj: form.cnpj,
+        responsavel: form.responsavel,
+        contato: form.contato,
+        provedor: { nome: form.provedorNome },
+        database: {
+          name: form.databaseName,
+          dialect: form.databaseDialect,
+          host: form.databaseHost,
+          username: form.databaseUsername,
+          password: form.databasePassword,
+        },
+        assinatura: {
+          valor: Number(form.assinaturaValor),
+          data_vencimento: form.assinaturaDataVencimento,
+          dia_vencimento: form.assinaturaDiaVencimento,
+        }
+      });
       this.tenantService.tenants.push(response);
       this.router.navigate(['/']);
     } catch (error) {
       console.error(error);
     }
-  }
-
-  buildTenantObj() {
-    return {
-      cnpj: this.cadastrarForm.cnpj,
-      responsavel: this.cadastrarForm.responsavel,
-      contato: this.cadastrarForm.contato,
-      provedor: { nome: this.cadastrarForm.provedorNome },
-      database: {
-        name: this.cadastrarForm.databaseName,
-        dialect: this.cadastrarForm.databaseDialect,
-        host: this.cadastrarForm.databaseHost,
-        username: this.cadastrarForm.databaseUsername,
-        password: this.cadastrarForm.databasePassword,
-      },
-      assinatura: {
-        valor: Number(this.cadastrarForm.assinaturaValor),
-        data_vencimento: this.cadastrarForm.assinaturaDataVencimento,
-        dia_vencimento: this.cadastrarForm.assinaturaDiaVencimento,
-      }
-    };
   }
 }
