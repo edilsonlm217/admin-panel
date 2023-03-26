@@ -17,14 +17,14 @@ export class EditarComponent implements OnInit {
     public api: ApiService,
   ) { }
 
-  async ngOnInit() {
+  ngOnInit(): void {
     this.route.queryParams.subscribe((params: any) => {
       const id = params['tenantId'];
       if (id) this.setTenantId(id);;
     });
   }
 
-  setTenantId(id: string) {
+  setTenantId(id: string): void {
     this.tenantId = id;
   }
 }
