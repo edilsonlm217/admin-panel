@@ -5,7 +5,7 @@ import { Tenant } from '../models/Tenant';
   providedIn: 'root'
 })
 export class TenantService {
-  public tenants!: Tenant[];
+  public tenants: Tenant[] = [];
 
   constructor() { }
 
