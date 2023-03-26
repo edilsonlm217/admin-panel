@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
+import { FormUtilsService } from 'src/app/services/form-utils.service';
 import { TenantService } from 'src/app/services/tenant.service';
 import { CadastrarForm } from '../cadastrar-model';
 
@@ -17,6 +18,7 @@ export class CadastrarFormComponent implements OnInit {
     public api: ApiService,
     public tenantService: TenantService,
     public router: Router,
+    public formUtilsService: FormUtilsService
   ) { }
 
   ngOnInit(): void {
@@ -27,7 +29,7 @@ export class CadastrarFormComponent implements OnInit {
     const isFormValid = this.resolveIsFormValid(ngForm);
 
     if (!isFormValid) {
-      this.focusMissingField(ngForm.form.controls);
+      this.formUtilsService.focusMissingField(ngForm.form.controls);
       return;
     }
 
@@ -64,21 +66,6 @@ export class CadastrarFormComponent implements OnInit {
 
   resolveIsFormValid(ngForm: NgForm): boolean {
     return ngForm.form.status === 'VALID';
-  }
-
-  focusMissingField(controls: any): void {
-    try {
-      for (const name in controls) {
-        if (controls[name].invalid) {
-          const element = document.getElementById(name);
-          if (element) { element.focus() }
-        }
-      }
-    } catch (error) {
-      console.error(error);
-    }
-
-    this.blurAllField(controls);
   }
 
   blurAllField(controls: any): void {
