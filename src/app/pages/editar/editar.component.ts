@@ -18,25 +18,13 @@ export class EditarComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
-    this.route.queryParams.subscribe(
-      (params: any) => {
-        const id = params['tenantId'];
-        if (!id) return;
-        this.setTenantId(id);
-      }
-    );
+    this.route.queryParams.subscribe((params: any) => {
+      const id = params['tenantId'];
+      if (id) this.setTenantId(id);;
+    });
   }
 
   setTenantId(id: string) {
     this.tenantId = id;
-  }
-
-  getTenantIdFromQueryParams(): Promise<string | undefined> {
-    return new Promise((resolve, reject) => {
-      this.route.queryParams.subscribe(
-        (params: any) => { resolve(params['tenantId']) },
-        (error) => { reject(error) }
-      );
-    })
   }
 }
