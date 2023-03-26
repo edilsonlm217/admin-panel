@@ -7,7 +7,7 @@ import { TenantService } from "src/app/services/tenant.service";
 import { EditarFormComponent } from "./editar-form/editar-form.component";
 import { EditarComponent } from "./editar.component";
 
-fdescribe('EditarComponent', () => {
+describe('EditarComponent', () => {
   let component: EditarComponent;
   let fixture: ComponentFixture<EditarComponent>;
 
