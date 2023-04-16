@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build --base-href \"/admin\"",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test --browsers=ChromeHeadless --watch=false",
+    "test-dev": "ng test"
   },
   "private": true,
   "dependencies": {
