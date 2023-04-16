@@ -7,7 +7,7 @@ import { Tenant } from '../models/Tenant';
   providedIn: 'root'
 })
 export class ApiService {
-  public api: string = 'http://177.53.237.90:3336';
+  public api: string = 'http://177.53.237.90:3335';
 
   constructor(
     public http: HttpClient,
