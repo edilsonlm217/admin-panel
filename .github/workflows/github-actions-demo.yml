@@ -7,7 +7,7 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
+  app-deploy:
 
     runs-on: ubuntu-latest
 
@@ -24,3 +24,11 @@ jobs:
       - run: npm install
       - run: npm run build --if-present
       - run: npm run test
+
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.ftp_host }}
+          username: ${{ secrets.ftp_user }}
+          password: ${{ secrets.ftp_password }}
+          server-dir: public_html/www/html/admin
