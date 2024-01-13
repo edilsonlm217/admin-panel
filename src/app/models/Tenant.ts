@@ -13,6 +13,6 @@ export interface Tenant {
         ativa: boolean,
         valor: number,
         data_vencimento: Date,
-        dia_vencimento: string
+        dia_vencimento: string,
     }
 }
